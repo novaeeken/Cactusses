@@ -1,0 +1,68 @@
+body {
+  background-color: #eff2de;
+}
+
+.content {
+  background-color: #eff2de;
+}
+
+.mini_cactus {
+  background-color: #dcf442
+}
+
+.container {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.container>img {
+  width: 10%;
+  border: solid 2px #debfa6;
+  border-radius: 8px;
+  margin: 15px;
+}
+
+.container>img:hover {
+  cursor: pointer;
+  border: solid 2px #debfa6;
+}
+
+.wrapper {
+  background-color: #eff2de;
+  position: relative;
+}
+
+.big {  
+  padding: 30px;
+  display: block;
+  margin: auto;
+  width: 400px;
+}
+
+.heart {
+  position:absolute;
+  top:480px;
+  left:850px;
+  max-width:70px;
+}
+
+.heart:hover {
+  cursor: pointer;
+}
+
+@media all and (max-width: 1166px) {
+  .container {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .container {
+    margin: auto;
+    width: 80%;
+    padding: 0px;
+  }
+}

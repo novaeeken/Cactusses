@@ -1,0 +1,44 @@
+extends layout.pug
+
+block content
+	
+	div.mini_cactus
+		div.container
+			img.thumbnail(src="images/cactus01.png" name="cactus01")
+			img.thumbnail(src="images/cactus02.png" name="cactus02")
+			img.thumbnail(src="images/cactus03.png" name="cactus03")
+			img.thumbnail(src="images/cactus04.png" name="cactus04")
+			img.thumbnail(src="images/cactus05.png" name="cactus05")
+			img.thumbnail(src="images/cactus06.png" name="cactus06")
+	div.wrapper
+		img.big
+		img.heart
+
+	script(src="https://code.jquery.com/jquery-3.2.1.js")
+	script.
+		$(document).ready(function() {
+			$(".thumbnail").click(function () {
+				let filename = $(this).attr("src");
+				// big_filename = $(filename).replace("thumb", "");
+				$(".heart").attr("src", "images/heart.png"); 
+				$(".big").attr("src", filename);
+				
+				$(".heart").click( function() {
+					console.log(filename);
+					$.post('/liked', {cactus: filename}, function(data) {
+						console.log("I HAVE SEND THE LINK YO");
+					});
+				});
+
+			});
+
+			// when hover on like 
+			$(".heart").mouseenter( function() {
+				$(".heart").attr("src", "images/hearthover.png"); 
+			})
+			
+			// when leaving like
+			$(".heart").mouseleave( function() {
+				$(".heart").attr("src", "images/heart.png"); 
+			})
+		});	 
