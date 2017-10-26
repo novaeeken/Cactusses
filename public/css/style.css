@@ -1,13 +1,27 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1 {
+  color: #446212;
+  font-size: 2.5em;
+}
+
 body {
   background-color: #eff2de;
+  font-family: 'Montserrat', sans-serif;
+  color: #D75A4A;
 }
 
 .content {
   background-color: #eff2de;
 }
 
-.mini_cactus {
-  background-color: #dcf442
+/*THUMBNAILS*/
+.thumb_wrapper {
+  background-color: #dcf442;
+  text-align: center;
 }
 
 .container {
@@ -28,29 +42,59 @@ body {
   border: solid 2px #debfa6;
 }
 
-.wrapper {
+/*SCORE*/
+.score_wrapper {
   background-color: #eff2de;
-  position: relative;
 }
 
-.big {  
+.score_container {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+#number {
+  font-size: 1.5em;
+}
+
+/*IMAGES + LIKE BUTTON */
+.image_wrapper {
+  background-color: #eff2de;
+  position: relative;
   padding: 30px;
-  display: block;
+}
+
+.image_container {
   margin: auto;
-  width: 400px;
+  width: 70%;
+  text-align: center;
+  display: block;
+}
+
+.big {
+  margin: auto;
+  width: 300px;
+  border-radius: 15px;
 }
 
 .heart {
   position:absolute;
-  top:480px;
-  left:850px;
+  top:360px;
+  left:833px;
   max-width:70px;
+}
+
+.text {
+  position: absolute;
+  top:370px;
+  left:839px;
 }
 
 .heart:hover {
   cursor: pointer;
 }
 
+/*SCALING*/
 @media all and (max-width: 1166px) {
   .container {
     margin: auto;

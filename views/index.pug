@@ -2,43 +2,73 @@ extends layout.pug
 
 block content
 	
-	div.mini_cactus
+	div.header
+
+	div.thumb_wrapper
+		br
+		h1 Pick your fav cactus!
 		div.container
-			img.thumbnail(src="images/cactus01.png" name="cactus01")
-			img.thumbnail(src="images/cactus02.png" name="cactus02")
-			img.thumbnail(src="images/cactus03.png" name="cactus03")
-			img.thumbnail(src="images/cactus04.png" name="cactus04")
-			img.thumbnail(src="images/cactus05.png" name="cactus05")
-			img.thumbnail(src="images/cactus06.png" name="cactus06")
-	div.wrapper
-		img.big
-		img.heart
+			img.thumbnail(src="images/cactus01.png" alt="cactus01")
+			img.thumbnail(src="images/cactus02.png" alt="cactus02")
+			img.thumbnail(src="images/cactus03.png" alt="cactus03")
+			img.thumbnail(src="images/cactus04.png" alt="cactus04")
+			img.thumbnail(src="images/cactus05.png" alt="cactus05")
+			img.thumbnail(src="images/cactus06.png" alt="cactus06")
+	div.image_wrapper
+		div.image_container
+			img.big
+			p.text
+			img.heart
+	div.score_wrapper
+		div.score_container
+			p This cactus has <b id="number"></b> likes! 
 
 	script(src="https://code.jquery.com/jquery-3.2.1.js")
 	script.
 		$(document).ready(function() {
-			$(".thumbnail").click(function () {
-				let filename = $(this).attr("src");
-				// big_filename = $(filename).replace("thumb", "");
-				$(".heart").attr("src", "images/heart.png"); 
-				$(".big").attr("src", filename);
-				
-				$(".heart").click( function() {
-					console.log(filename);
-					$.post('/liked', {cactus: filename}, function(data) {
-						console.log("I HAVE SEND THE LINK YO");
-					});
-				});
+			$(".score_wrapper").hide();								// Hide the text with current score 
+			let name = "";
+			let number = "";
 
+			$(".thumbnail").click(function () {
+				
+				let filename = $(this).attr("src");					// store the filename of that thumbnail
+				name = $(this).attr("alt");							// store clean cactus identifier 
+				
+				//SHOW ALL OF THESE ELEMENTS:
+				$(".score_wrapper").show(500);						// current score text 
+				$(".heart").attr("src", "images/heart.png");		// like heart image
+				$(".text").html("<b>+1 like!</b>");					//  +1 like text (but unvisible because underneath heart)
+				$(".big").attr("src", filename);					// Image with corresponding filename as thumbnail
+				
+				// RETRIEVE NUMBER OF LIKES FOR THIS CACTUS
+				$.get('/likes', {cactus: name}, function(data) {
+					number = data.number;
+					$('#number').html(`${number}`);					// insert current number of likes
+				}); 	
+			});
+			
+			// WHEN HEART IS CLICKED
+			$(".heart").click( function() {
+				$.post('/liked', {cactus: name}, function(data) {});		//send post request with the name of clicked cactus 
+																			// so number of likes will be stored into JSON file.
+				$(".text").animate({										// +1 'like text' moves up
+					top: "-=60px",
+					opacity: 0.0,
+				}, 1000);
+				$(".text").animate({opacity:'1', top: "+=60px"}, 0);		// then reset +1 like to old position
+				
+				number += 1;												// artificially update variable 'number'
+				$('#number').html(`${number}`);								// insert upped number
 			});
 
-			// when hover on like 
+			// WHEN MOUSE ENTER ON HEART
 			$(".heart").mouseenter( function() {
 				$(".heart").attr("src", "images/hearthover.png"); 
 			})
 			
-			// when leaving like
+			// WHEN MOUSE LEAVE ON HEART
 			$(".heart").mouseleave( function() {
 				$(".heart").attr("src", "images/heart.png"); 
 			})
-		});	 
+		});
