@@ -60,15 +60,14 @@ body {
 /*IMAGES + LIKE BUTTON */
 .image_wrapper {
   background-color: #eff2de;
-  position: relative;
   padding: 30px;
 }
 
 .image_container {
   margin: auto;
-  width: 70%;
   text-align: center;
-  display: block;
+  position: relative;
+  width: 300px;
 }
 
 .big {
@@ -78,16 +77,16 @@ body {
 }
 
 .heart {
-  position:absolute;
-  top:360px;
-  left:833px;
+  position: absolute;
+  top: 325px;
+  left: 225px;
   max-width:70px;
 }
 
 .text {
   position: absolute;
-  top:370px;
-  left:839px;
+  top: 335px;
+  left: 235px;
 }
 
 .heart:hover {
